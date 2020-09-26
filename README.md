@@ -10,7 +10,7 @@
 
 ## 目次
 1. [PyTorchの概要](https://github.com/JuvenileTalk9/PyTorch/blob/master/01_PyTorch%E3%81%AE%E6%A6%82%E8%A6%81/PyTorch%E3%81%AE%E6%A6%82%E8%A6%81.md)
-2. [インストール方法]()
+2. [インストール方法](https://github.com/JuvenileTalk9/PyTorch/blob/master/02_%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95.md)
 3. [ニューラルネットワークの学習]()
 4. [CNNによる画像分類]()
 5. [SSDによる物体検出]()
@@ -18,4 +18,4 @@
 （作成中）
 
 ## 参考書籍
-[PyToorchによる物体検出](https://www.ohmsha.co.jp/book/9784274225932/)
+[PyTorchによる物体検出](https://www.ohmsha.co.jp/book/9784274225932/)
