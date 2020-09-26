@@ -9,10 +9,10 @@
 - CUDA 10.1
 
 ## 目次
-1. [PyTorchの概要]()
+1. [PyTorchの概要](https://github.com/JuvenileTalk9/PyTorch/blob/master/01_PyTorch%E3%81%AE%E6%A6%82%E8%A6%81/PyTorch%E3%81%AE%E6%A6%82%E8%A6%81.md)
 2. [インストール方法]()
 3. [ニューラルネットワークの学習]()
-4. [CNN（畳み込みニューラルネットワーク）による画像分類]()
+4. [CNNによる画像分類]()
 5. [SSDによる物体検出]()
 
 （作成中）
