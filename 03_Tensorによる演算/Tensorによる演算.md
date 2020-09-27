@@ -112,8 +112,8 @@ tensor([ 44, 148])
 行列同士の乗算は```mm```や```matmult```を使います。
 
 ```python
->>> a = torch.arange(8).reshape(2, 4)
->>> b = torch.arange(8).reshape(4, 2)
+>>> a = torch.arange(8).reshape(2, 4)  # 行列
+>>> b = torch.arange(8).reshape(4, 2)  # 行列
 >>> torch.mm(a, b)
 tensor([[28, 34],
         [76, 98]])
@@ -132,11 +132,13 @@ Tensorのをnumpyのarrayに変換するときは```numpy()```を使います。
 <class 'torch.Tensor'>
 >>> a
 tensor([1, 2, 3])
+
 >>> b = a.numpy()
 >>> type(b)
 <class 'numpy.ndarray'>
 >>> b
 array([1, 2, 3], dtype=int64)
+
 >>> c = torch.from_numpy(b)
 >>> type(c)
 <class 'torch.Tensor'>
@@ -150,7 +152,7 @@ PyTorchのTensorとNumpyのarrayは、これまでに見てきたように使い
 
 微分値を求めたい場合、tensorの定義時に```requires_grad```という属性値を```True```に設定します。```requires_grad```のでフォルト値は```False```なので、手動で設定する必要があります。
 
-以下は、関数f：R<sup>3</sup>→Rの最小解を求める最急降下法のプログラムです。関数はプログラム中の```f```関数で定義しています。プログラム中で、```x1 = (x1 - 0.1 * g1).detach().requires_grad_(True)```とありますが、これは一度微分値を求めたら次に微分値を求める前に、一度```detach()```で微分の情報を外してから、再度```requires_grad_(True)```で微分値を求めるように設定する必要があるからです。
+以下は、関数f：R<sup>3</sup>→Rの最小解を求める最急降下法のプログラムです。関数はプログラム中の```f```関数で定義しています。プログラム中で、```x = x.detach().requires_grad_(True)```とありますが、これは一度微分値を求めたら次に微分値を求める前に、一度```detach()```で微分の情報を外してから、再度```requires_grad_(True)```で微分値を求めるように設定する必要があるからです。
 
 ```python
 import torch
