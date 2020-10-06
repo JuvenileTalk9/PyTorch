@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     # バッチサイズの設定
     data_size = len(train_x)
-    batch_size = 30
+    batch_size = 25
 
     # 学習
     for epoch in range(2000):
