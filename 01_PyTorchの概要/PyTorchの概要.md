@@ -36,7 +36,7 @@ PyTorchの実装が他のフレームワークと比較して簡潔なため、P
 ### 特徴4：ライブラリが豊富
 PyTorchはそのままでもディープラーニングの学習・実行を実装することができますが、追加でライブラリをインストールすることで、より実装が容易になります。
 
-PyTorchのライブラリとしては、画像解析用、音声解析用、自然言語処理用の3つが代表的であり、それそれtorchvision、torchaudio、torchtextという名称のライブラリで整理されています。例えばtorchvisionをインストールすると、MINISTやVOCなどの有名なデータセットのロードや、ResNetやMobileNetなどの代表的なモデルの活用など、強力なAPIが利用でるようになります。
+PyTorchのライブラリとしては、画像解析用、音声解析用、自然言語処理用の3つが代表的であり、それそれtorchvision、torchaudio、torchtextという名称のライブラリで整理されています。例えばtorchvisionをインストールすると、MINISTやVOCなどの有名なデータセットのロードや、ResNetやMobileNetなどの代表的なモデルの活用など、強力なAPIが利用できるようになります。
 
 
 [目次へ戻る](https://github.com/JuvenileTalk9/PyTorch)
