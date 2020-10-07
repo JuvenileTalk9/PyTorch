@@ -84,6 +84,6 @@ for x, y in dataloader:
 
 プログラム全体は以下を参照してください。
 
-[dataloader.py]()
+[dataloader.py](https://github.com/JuvenileTalk9/PyTorch/blob/master/05_DataLoader%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/dataloader.py)
 
 [目次へ戻る](https://github.com/JuvenileTalk9/PyTorch)
