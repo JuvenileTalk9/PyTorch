@@ -15,8 +15,8 @@
 4. [ニューラルネットワークの学習](https://github.com/JuvenileTalk9/PyTorch/blob/master/04_%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E5%AD%A6%E7%BF%92/%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E5%AD%A6%E7%BF%92.md)
 5. [DataLoaderの使い方](https://github.com/JuvenileTalk9/PyTorch/blob/master/05_DataLoader%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/DataLoader%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9.md)
 6. [torchvision]()
-7. [CNNによる画像分類]()
-8. [SSDによる物体検出]()
+7. [MobileNet-CNN](https://github.com/JuvenileTalk9/PyTorch/blob/master/07_MobileNet-CNN/MobileNet-CNN.md)
+8. [MobileNet-SSD]()
 
 （作成中）
 
