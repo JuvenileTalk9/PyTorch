@@ -5,6 +5,10 @@ import torchvision
 
 if __name__ == '__main__':
 
+    # GPU・CPU選択
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    print('device: {}'.format(device))
+
     # テストデータをダウンロード
     transform = torchvision.transforms.Compose([
         torchvision.transforms.ToTensor(),
@@ -22,6 +26,7 @@ if __name__ == '__main__':
     # モデル生成
     model = torchvision.models.mobilenet_v2(pretrained=True, progress=True)
     model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+    model = model.to(device)
 
     # 読み込み
     model_path = './mobilenet.pth'
@@ -30,7 +35,7 @@ if __name__ == '__main__':
     # 推論
     dataiter = iter(testloader)
     images, labels = dataiter.next()
-    outputs = model(images)
+    outputs = model(images.to(device))
     _, predicted = torch.max(outputs, 1)
     print('ground_truth: {}'.format([classes[labels[i]] for i in range(4)]))
     print('detected_label: {}'.format([classes[predicted[i]] for i in range(4)]))
