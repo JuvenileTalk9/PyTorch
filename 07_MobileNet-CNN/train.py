@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     # モデル生成
     model = torchvision.models.mobilenet_v2(pretrained=True, progress=True)
-    model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+    model.classifier[1] = nn.Linear(in_features=model.classifier[1].in_features, out_features=num_classes, bias=True)
     model = model.to(device)
 
     # 学習パラメータ定義

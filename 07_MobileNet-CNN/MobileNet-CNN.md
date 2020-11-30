@@ -2,18 +2,28 @@
 
 ここでは、torchvisionを利用してMobileNet-CNNをファインチューニングし、推論を実行します。
 
+## GPU利用
+
+GPUが利用できる環境であればGPUを、利用できなければCPUを使います。以下はその設定の定型文です。
+
+```python
+import torch
+import torchvision
+
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+print('device: {}'.format(device))
+# device: cuda:0
+```
+
 ## データセットの定義
 
-torchvisionには画像分類用のデータセットが多数実装されています。今回は、MNISTを利用します。データセットのリファレンスは以下にあります。
+torchvisionには画像分類用のデータセットが多数実装されています。データセットのリファレンスは以下にあります。
 
 [https://pytorch.org/docs/stable/torchvision/datasets.html](https://pytorch.org/docs/stable/torchvision/datasets.html)
 
 リファレンスに従ってデータセットを生成します。今回はCIFAR10データセットを使用しました。
 
 ```python
-import torch
-import torchvision
-
 # 学習データをダウンロード
 transform = torchvision.transforms.Compose([
     torchvision.transforms.ToTensor(),
@@ -25,7 +35,10 @@ trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, 
 # ラベル一覧取得
 classes = trainset.classes
 num_classes = len(classes)
-print(num_classes)
+print('num_classes: {}'.format(num_classes))
+print('classes: {}'.format(classes))
+# num_classes: 10
+# classes: ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 ```
 
 ## ネットワーク定義
@@ -37,7 +50,14 @@ torchvisionには画像分類用のネットワークが多数実装されてい
 リファレンスに従い、以下のようにmodelを生成します。今回はImageNetによる事前学習済みのモデルをダウンロードします。学習データとしてCIFAR10を使用するので、出力属性数は10としました。
 
 ```python
-model = torchvision.models.mobilenet_v2(pretrained=True, progress=True, num_classes=10)
+model = torchvision.models.mobilenet_v2(pretrained=True, progress=True)
+print(model.classifier)
+# Sequential(
+#   (0): Dropout(p=0.2, inplace=False)
+#   (1): Linear(in_features=1280, out_features=1000, bias=True)
+# )
+model.classifier[1] = nn.Linear(in_features=model.classifier[1].in_features, out_features=num_classes, bias=True)
+model = model.to(device)
 ```
 
 ## 学習
