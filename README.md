@@ -1,4 +1,5 @@
 # PyTorch
+
 [PyTorch](https://pytorch.org/)の勉強のアウトプットをまとめました。
 
 ## 前提
@@ -16,7 +17,7 @@
 5. [DataLoaderの使い方](https://github.com/JuvenileTalk9/PyTorch/blob/master/05_DataLoader%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9/DataLoader%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9.md)
 6. [torchvision]()
 7. [MobileNet-CNN](https://github.com/JuvenileTalk9/PyTorch/blob/master/07_MobileNet-CNN/MobileNet-CNN.md)
-8. [MobileNet-SSD]()
+8. [MobileNet-SSD](https://github.com/JuvenileTalk9/PyTorch/blob/master/08_MobileNet-SSD/MobileNet-SSD.md)
 
 （作成中）
 
