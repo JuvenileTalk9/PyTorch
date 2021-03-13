@@ -32,7 +32,13 @@ class_labels = ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 
 
 def build_logger():
     logger = logging.getLogger(__name__)
-    logging.basicConfig(format="[ %(levelname)s ] %(message)s", level=logging.DEBUG, stream=sys.stdout)
+    stream_hander = logging.StreamHandler()
+    stream_hander.setLevel(logging.DEBUG)
+    stream_hander.setFormatter(logging.Formatter("%(asctime)s [ %(levelname)s ] %(message)s"))
+    file_handler = logging.FileHandler('train.log')
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(logging.Formatter("%(asctime)s [ %(levelname)s ] %(message)s"))
+    logging.basicConfig(level=logging.NOTSET, handlers=[stream_hander, file_handler])
     return logger
 
 
@@ -213,8 +219,8 @@ if __name__ == '__main__':
     # 学習開始
     logger.info('Start training from epoch {}.'.format(last_epoch + 1))
     for epoch in range(last_epoch + 1, args.num_epochs):
-        scheduler.step()
         train(train_loader, net, criterion, optimizer, device=device, epoch=epoch)
+        scheduler.step()
         
         if epoch % args.validation_epochs == 0 or epoch == args.num_epochs - 1:
             val_loss, val_regression_loss, val_classification_loss = test(val_loader, net, criterion, device=device)
@@ -224,6 +230,6 @@ if __name__ == '__main__':
                 f"Validation Regression Loss {val_regression_loss:.4f}, " +
                 f"Validation Classification Loss: {val_classification_loss:.4f}"
             )
-            model_path = os.path.join(args.save_folder, f"{args.net}-Epoch-{epoch}-Loss-{val_loss}.pth")
+            model_path = os.path.join(args.save_folder, f"{args.model}-Epoch-{epoch}-Loss-{val_loss}.pth")
             net.save(model_path)
             logger.info(f"Saved model {model_path}")

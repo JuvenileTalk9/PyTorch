@@ -1,0 +1,39 @@
+2021-03-14 02:58:25,065 [ INFO ] __main__ Namespace(base_weights='..\\weights\\mobilenet_v1_with_relu_69_5.pth', batch_size=8, cuda=True, dataset_root=['..\\VOCdevkit\\VOC2007', '..\\VOCdevkit\\VOC2012'], labelmap_path='..\\voc-model-labels.txt', lr=0.001, milestones='80,100', model='mobilenetv1_ssd', momentum=0.9, num_epochs=1000, save_folder='..\\weights', scheduler='multi-step', t_max=120, val_dataset_root='..\\VOCdevkit\\VOC2007_val', validation_epochs=1, weight_decay=0.0005)
+2021-03-14 02:58:25,099 [ INFO ] __main__ device: cuda:0
+2021-03-14 02:58:25,100 [ INFO ] __main__ Preparing training datasets...
+2021-03-14 02:58:25,101 [ INFO ] root VOC Labels read from file: ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor')
+2021-03-14 02:58:25,109 [ INFO ] root VOC Labels read from file: ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor')
+2021-03-14 02:58:25,110 [ INFO ] __main__ Train dataset size: 16551
+2021-03-14 02:58:25,110 [ INFO ] __main__ Preparing validation datasets...
+2021-03-14 02:58:25,111 [ INFO ] root VOC Labels read from file: ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor')
+2021-03-14 02:58:25,111 [ INFO ] __main__ Validation dataset size: 4952
+2021-03-14 02:58:25,111 [ INFO ] __main__ Building model...
+2021-03-14 02:58:26,269 [ INFO ] __main__ Uses MultiStepLR scheduler.
+2021-03-14 02:58:26,269 [ INFO ] __main__ Start training from epoch 0.
+2021-03-14 02:58:48,195 [ INFO ] __main__ Epoch: 0, Step: 100, Average Loss: 15.1214, Average Regression Loss 2.9731, Average Classification Loss: 12.1483
+2021-03-14 02:59:16,617 [ INFO ] Namespace(base_weights='..\\weights\\mobilenet_v1_with_relu_69_5.pth', batch_size=8, cuda=True, dataset_root=['..\\VOCdevkit\\VOC2007', '..\\VOCdevkit\\VOC2012'], labelmap_path='..\\voc-model-labels.txt', lr=0.001, milestones='80,100', model='mobilenetv1_ssd', momentum=0.9, num_epochs=1000, save_folder='..\\weights', scheduler='multi-step', t_max=120, val_dataset_root='..\\VOCdevkit\\VOC2007_val', validation_epochs=1, weight_decay=0.0005)
+2021-03-14 02:59:16,648 [ INFO ] device: cuda:0
+2021-03-14 02:59:16,649 [ INFO ] Preparing training datasets...
+2021-03-14 02:59:16,650 [ INFO ] VOC Labels read from file: ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor')
+2021-03-14 02:59:16,654 [ INFO ] VOC Labels read from file: ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor')
+2021-03-14 02:59:16,654 [ INFO ] Train dataset size: 16551
+2021-03-14 02:59:16,655 [ INFO ] Preparing validation datasets...
+2021-03-14 02:59:16,656 [ INFO ] VOC Labels read from file: ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor')
+2021-03-14 02:59:16,656 [ INFO ] Validation dataset size: 4952
+2021-03-14 02:59:16,656 [ INFO ] Building model...
+2021-03-14 02:59:17,784 [ INFO ] Uses MultiStepLR scheduler.
+2021-03-14 02:59:17,785 [ INFO ] Start training from epoch 0.
+2021-03-14 02:59:40,683 [ INFO ] Epoch: 0, Step: 100, Average Loss: 15.1461, Average Regression Loss 3.0403, Average Classification Loss: 12.1058
+2021-03-14 03:00:01,597 [ INFO ] Epoch: 0, Step: 200, Average Loss: 11.4554, Average Regression Loss 2.7722, Average Classification Loss: 8.6832
+2021-03-14 03:00:22,794 [ INFO ] Epoch: 0, Step: 300, Average Loss: 8.1813, Average Regression Loss 2.6043, Average Classification Loss: 5.5770
+2021-03-14 03:00:43,407 [ INFO ] Epoch: 0, Step: 400, Average Loss: 7.6996, Average Regression Loss 2.4730, Average Classification Loss: 5.2265
+2021-03-14 03:01:03,592 [ INFO ] Epoch: 0, Step: 500, Average Loss: 7.4582, Average Regression Loss 2.4409, Average Classification Loss: 5.0173
+2021-03-14 03:01:24,133 [ INFO ] Epoch: 0, Step: 600, Average Loss: 7.3328, Average Regression Loss 2.3150, Average Classification Loss: 5.0178
+2021-03-14 03:01:44,241 [ INFO ] Epoch: 0, Step: 700, Average Loss: 7.3538, Average Regression Loss 2.3458, Average Classification Loss: 5.0081
+2021-03-14 03:02:04,858 [ INFO ] Epoch: 0, Step: 800, Average Loss: 7.2025, Average Regression Loss 2.3560, Average Classification Loss: 4.8465
+2021-03-14 03:02:25,637 [ INFO ] Epoch: 0, Step: 900, Average Loss: 7.0115, Average Regression Loss 2.2193, Average Classification Loss: 4.7922
+2021-03-14 03:02:46,540 [ INFO ] Epoch: 0, Step: 1000, Average Loss: 6.9607, Average Regression Loss 2.1785, Average Classification Loss: 4.7822
+2021-03-14 03:03:07,124 [ INFO ] Epoch: 0, Step: 1100, Average Loss: 6.9157, Average Regression Loss 2.1677, Average Classification Loss: 4.7480
+2021-03-14 03:03:27,511 [ INFO ] Epoch: 0, Step: 1200, Average Loss: 6.7903, Average Regression Loss 2.1628, Average Classification Loss: 4.6275
+2021-03-14 03:03:48,466 [ INFO ] Epoch: 0, Step: 1300, Average Loss: 6.7817, Average Regression Loss 2.1892, Average Classification Loss: 4.5926
+2021-03-14 03:04:09,210 [ INFO ] Epoch: 0, Step: 1400, Average Loss: 6.6270, Average Regression Loss 2.0790, Average Classification Loss: 4.5480
