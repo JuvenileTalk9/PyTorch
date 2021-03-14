@@ -178,7 +178,7 @@ Data Augmentationはデータセットの画像に対してリサイズや画素
 
 MobileNet-SSDの全体は以下の構造になっています。
 
-![mobilenet-ssd.jpg](https://github.com/JuvenileTalk9/PyTorch/tree/master/08_MobileNet-SSD/mobilenet-ssd.jpg)
+![mobilenet-ssd.jpg](https://raw.githubusercontent.com/JuvenileTalk9/PyTorch/master/08_MobileNet-SSD/mobilenet-ssd.jpg)
 
 これらの層を1つ1つ実装し、連結させたコードが以下になります。
 
@@ -188,7 +188,7 @@ MobileNet-SSDの全体は以下の構造になっています。
 
 モデルのパラメータを求めて更新するためには、何かしらの損失関数が必要です。下記図のように、SSDではlossをBBoxの距離の誤差```lossL```とラベルの誤差```lossC```の和として誤差を定義しています。ここで、```lossC```は正解と推定されたラベルの差なので簡潔ですが、```lossL```の考え方は特殊です。図のように、正解のBBoxに対して1つ選択したPriorBoxの誤差```d0```と、推定されたBBoxに対して正解のときと同一のPriorBoxの誤差```d1```を計算し、```d0```と```d1```の誤差が```lossL```になっています。そのため、SSDは枠の位置を学習しているのではなく、枠からの距離を学習していることになります。
 
-![loss](https://github.com/JuvenileTalk9/PyTorch/tree/master/08_MobileNet-SSD/loss.jpg)
+![loss](https://raw.githubusercontent.com/JuvenileTalk9/PyTorch/master/08_MobileNet-SSD/loss.jpg)
 
 今回は損失関数は```MultiboxLoss```クラスで定義しました。
 
