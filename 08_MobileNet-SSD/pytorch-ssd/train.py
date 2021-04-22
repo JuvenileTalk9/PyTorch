@@ -6,8 +6,6 @@ import logging
 import itertools
 from argparse import ArgumentParser
 
-import cv2
-import numpy as np
 import torch
 from torch.utils.data import DataLoader, ConcatDataset
 from torch.optim.lr_scheduler import CosineAnnealingLR, MultiStepLR
@@ -25,14 +23,15 @@ model_params = {
 }
 
 
-class_labels = ('BACKGROUND', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus',
-                'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 
-                'person', 'pottedplant','sheep', 'sofa', 'train', 'tvmonitor')
-
-
 def build_logger():
     logger = logging.getLogger(__name__)
-    logging.basicConfig(format="[ %(levelname)s ] %(message)s", level=logging.DEBUG, stream=sys.stdout)
+    stream_hander = logging.StreamHandler()
+    stream_hander.setLevel(logging.DEBUG)
+    stream_hander.setFormatter(logging.Formatter('%(asctime)s [ %(levelname)s ] %(message)s'))
+    file_handler = logging.FileHandler('train.log')
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(logging.Formatter('%(asctime)s [ %(levelname)s ] %(message)s'))
+    logging.basicConfig(level=logging.NOTSET, handlers=[stream_hander, file_handler])
     return logger
 
 
@@ -58,10 +57,10 @@ def build_argparser():
                         help='Momentum value for optim.')
     parser.add_argument('--weight_decay', type=float, default=5e-4,
                         help='Weight decay for SGD.')
-    parser.add_argument('--scheduler', default="multi-step", type=str,
-                        help="Scheduler for SGD. It can one of multi-step and cosine")
-    parser.add_argument('--milestones', default="80,100", type=str,
-                        help="milestones for MultiStepLR")
+    parser.add_argument('--scheduler', default='multi-step', type=str,
+                        help='Scheduler for SGD. It can one of multi-step and cosine')
+    parser.add_argument('--milestones', default='80,100', type=str,
+                        help='milestones for MultiStepLR')
     parser.add_argument('--t_max', default=120, type=float,
                         help='T_max value for Cosine Annealing Scheduler.')
     parser.add_argument('--num_epochs', default=120, type=int,
@@ -99,10 +98,10 @@ def train(loader, net, criterion, optimizer, device, debug_steps=100, epoch=-1):
             avg_reg_loss = running_regression_loss / debug_steps
             avg_clf_loss = running_classification_loss / debug_steps
             logger.info(
-                f"Epoch: {epoch}, Step: {i}, " +
-                f"Average Loss: {avg_loss:.4f}, " +
-                f"Average Regression Loss {avg_reg_loss:.4f}, " +
-                f"Average Classification Loss: {avg_clf_loss:.4f}"
+                f'Epoch: {epoch}, Step: {i}, ' +
+                f'Average Loss: {avg_loss:.4f}, ' +
+                f'Average Regression Loss {avg_reg_loss:.4f}, ' +
+                f'Average Classification Loss: {avg_clf_loss:.4f}'
             )
             running_loss = 0.0
             running_regression_loss = 0.0
@@ -187,7 +186,7 @@ if __name__ == '__main__':
         {'params': itertools.chain(net.regression_headers.parameters(), net.classification_headers.parameters())}
     ]
     net.init_from_base_net(args.base_weights)
-    net.to(device)
+    net = net.to(device)
 
     # 誤差関数と最適化関数の設定
     criterion = MultiboxLoss(config.priors, iou_threshold=0.5, neg_pos_ratio=3,
@@ -197,14 +196,14 @@ if __name__ == '__main__':
     
     # スケジューラの設定
     if args.scheduler == 'multi-step':
-        logger.info("Uses MultiStepLR scheduler.")
-        milestones = [int(v.strip()) for v in args.milestones.split(",")]
+        logger.info('Uses MultiStepLR scheduler.')
+        milestones = [int(v.strip()) for v in args.milestones.split(',')]
         scheduler = MultiStepLR(optimizer, milestones=milestones, gamma=0.1, last_epoch=last_epoch)
     elif args.scheduler == 'cosine':
-        logger.info("Uses CosineAnnealingLR scheduler.")
+        logger.info('Uses CosineAnnealingLR scheduler.')
         scheduler = CosineAnnealingLR(optimizer, args.t_max, last_epoch=last_epoch)
     else:
-        logger.error("Unsupported Scheduler: {}.".format(args.scheduler))
+        logger.error('Unsupported Scheduler: {}.'.format(args.scheduler))
         sys.exit(1)
 
     # モデルの出力先ディレクトリ生成
@@ -213,17 +212,17 @@ if __name__ == '__main__':
     # 学習開始
     logger.info('Start training from epoch {}.'.format(last_epoch + 1))
     for epoch in range(last_epoch + 1, args.num_epochs):
-        scheduler.step()
         train(train_loader, net, criterion, optimizer, device=device, epoch=epoch)
+        scheduler.step()
         
         if epoch % args.validation_epochs == 0 or epoch == args.num_epochs - 1:
             val_loss, val_regression_loss, val_classification_loss = test(val_loader, net, criterion, device=device)
             logger.info(
-                f"Epoch: {epoch}, " +
-                f"Validation Loss: {val_loss:.4f}, " +
-                f"Validation Regression Loss {val_regression_loss:.4f}, " +
-                f"Validation Classification Loss: {val_classification_loss:.4f}"
+                f'Epoch: {epoch}, ' +
+                f'Validation Loss: {val_loss:.4f}, ' +
+                f'Validation Regression Loss {val_regression_loss:.4f}, ' +
+                f'Validation Classification Loss: {val_classification_loss:.4f}'
             )
-            model_path = os.path.join(args.save_folder, f"{args.net}-Epoch-{epoch}-Loss-{val_loss}.pth")
+            model_path = os.path.join(args.save_folder, f'{args.model}-Epoch-{epoch}-Loss-{val_loss}.pth')
             net.save(model_path)
-            logger.info(f"Saved model {model_path}")
+            logger.info(f'Saved model {model_path}')
